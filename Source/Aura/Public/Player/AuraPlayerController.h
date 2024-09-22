@@ -13,5 +13,17 @@ UCLASS()
 class AURA_API AAuraPlayerController : public APlayerController
 {
 	GENERATED_BODY()
-	
+public:
+	AAuraPlayerController();
+
+protected:
+	virtual void BeginPlay() override;
+
+private:
+	/* Input */
+	UPROPERTY(EditAnywhere, Category = "Input")
+	TObjectPtr<class UInputMappingContext> AuraContext;
+
+	UPROPERTY(EditAnywhere, Category = "Input")
+	TObjectPtr<class UInputAction> MoveAction;
 };
