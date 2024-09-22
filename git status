@@ -1,0 +1,47 @@
+[33mcommit 3907b2bf835a6a7d560743c480b3927c13144725[m[33m ([m[1;36mHEAD -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m)[m
+Author: akaliadz <01167187@pw.edu.pl>
+Date:   Sun Sep 22 10:56:44 2024 +0200
+
+    Movement Input
+
+[33mcommit 9ad5cccdfc87cb4d19c1a02436899f661b98297c[m
+Author: akaliadz <01167187@pw.edu.pl>
+Date:   Sun Sep 22 10:21:33 2024 +0200
+
+    AuraPlayerController
+
+[33mcommit a4d61e3e9ca72e827eb9f0579f1b71a6b52aa426[m
+Author: akaliadz <01167187@pw.edu.pl>
+Date:   Sat Sep 21 18:14:58 2024 +0200
+
+    Enhanced Input MappingContext and InputAction
+
+[33mcommit 74638ba52bd83059d323e736bdc267fe20ed2409[m
+Author: akaliadz <01167187@pw.edu.pl>
+Date:   Sat Sep 21 12:25:40 2024 +0200
+
+    Character Animation Blueprints N1
+
+[33mcommit 1a0164525f005c447d39f9e53df1158cc66a8214[m
+Author: akaliadz <01167187@pw.edu.pl>
+Date:   Sat Sep 21 11:49:15 2024 +0200
+
+    Character Blueprints Setup N1
+
+[33mcommit 771e40d020d759c29abb134d090fc361307a22d9[m
+Author: akaliadz <01167187@pw.edu.pl>
+Date:   Sat Sep 21 11:22:40 2024 +0200
+
+    Player and Enemy Characters and Folder Change
+
+[33mcommit 7f86278246aa29ba91c15caaaee0e329f0c26a3c[m
+Author: akaliadz <01167187@pw.edu.pl>
+Date:   Sat Sep 21 10:37:14 2024 +0200
+
+    The Base Character Class
+
+[33mcommit 9157fbb2fdfe6da899e9292dbf1f2768fbaca6ac[m
+Author: akaliadz <01167187@pw.edu.pl>
+Date:   Sat Sep 21 09:29:12 2024 +0200
+
+    Initial Project Files
