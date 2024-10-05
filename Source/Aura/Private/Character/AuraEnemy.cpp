@@ -5,6 +5,11 @@
 #include "AbilitySystem/AuraAbilitySystemComponent.h"
 #include "AbilitySystem/AuraAttributeSet.h"
 
+void AAuraEnemy::BeginPlay()
+{
+	AbilitySystemComponent->InitAbilityActorInfo(this, this);
+}
+
 AAuraEnemy::AAuraEnemy()
 {
 	GetMesh()->SetCollisionResponseToChannel(ECollisionChannel::ECC_Visibility, ECollisionResponse::ECR_Block);
