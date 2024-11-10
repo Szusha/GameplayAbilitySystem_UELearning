@@ -7,7 +7,6 @@
 #include "AuraEffectActor.generated.h"
 
 class USphereComponent;
-class UStaticMeshComponent;
 
 UCLASS()
 class AURA_API AAuraEffectActor : public AActor
@@ -22,15 +21,12 @@ public:
 
 	UFUNCTION()
 	virtual void EndOverlap(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex);
-
 protected:
 	virtual void BeginPlay() override;
-
 private:
-	UPROPERTY(EditAnywhere)
+	UPROPERTY(VisibleAnywhere)
 	TObjectPtr<USphereComponent> Sphere;
 
-	UPROPERTY(EditAnywhere)
-	TObjectPtr<UStaticMeshComponent> StaticMesh;
-
+	UPROPERTY(VisibleAnywhere)
+	TObjectPtr<UStaticMeshComponent> Mesh;
 };
