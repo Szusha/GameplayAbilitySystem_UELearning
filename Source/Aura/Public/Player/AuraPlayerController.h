@@ -43,6 +43,8 @@ private:
 	TScriptInterface<class IEnemyInterface> LastActor;  // TScriptInterface is a new wrapper for raw Interface pointers
 	TScriptInterface<class IEnemyInterface> ThisActor;
 
+	FHitResult CursorHit;
+
 	void AbilityInputTagPressed(FGameplayTag InputTag);
 	void AbilityInputTagReleased(FGameplayTag InputTag);
 	void AbilityInputTagHeld(FGameplayTag InputTag);
