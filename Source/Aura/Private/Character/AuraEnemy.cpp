@@ -50,4 +50,6 @@ void AAuraEnemy::InitAbilityActorInfo()
 	
 	UAuraAbilitySystemComponent* AuraASC = Cast<UAuraAbilitySystemComponent>(AbilitySystemComponent);
 	AuraASC->AbilityActorInfoSet();
+
+	InitializeDefaultAttributes();
 }
