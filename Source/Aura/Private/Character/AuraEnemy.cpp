@@ -9,6 +9,7 @@
 #include "Components/WidgetComponent.h"
 #include "AbilitySystem/AuraAttributeSet.h"
 #include "UI/Widgets/AuraUserWidget.h"
+#include "AbilitySystem/AuraAbilitySystemLibrary.h"
 
 
 AAuraEnemy::AAuraEnemy()
@@ -48,6 +49,7 @@ void AAuraEnemy::BeginPlay()
 {
 	Super::BeginPlay();
 	InitAbilityActorInfo();
+	InitializeDefaultAttributes();
 
 	if (UAuraUserWidget* AuraUserWidget = Cast<UAuraUserWidget>(HealthBar->GetUserWidgetObject()))
 	{
@@ -85,4 +87,9 @@ void AAuraEnemy::InitAbilityActorInfo()
 	AuraASC->AbilityActorInfoSet();
 
 	InitializeDefaultAttributes();
+}
+
+void AAuraEnemy::InitializeDefaultAttributes()
+{
+	UAuraAbilitySystemLibrary::InitializeDefaultAttributes(this, CharacterClass, Level, GetAbilitySystemComponent());
 }
