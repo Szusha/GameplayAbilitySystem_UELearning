@@ -6,6 +6,7 @@
 #include "Actors/AuraProjectile.h"
 #include "AbilitySystemBlueprintLibrary.h"
 #include "AbilitySystemComponent.h"
+#include "Aura/Public/AuraGameplayTags.h"
 
 void UAuraProjectileSpell::ActivateAbility(const FGameplayAbilitySpecHandle Handle, const FGameplayAbilityActorInfo* ActorInfo, const FGameplayAbilityActivationInfo ActivationInfo, const FGameplayEventData* TriggerEventData)
 {
@@ -34,6 +35,9 @@ void UAuraProjectileSpell::SpawnProjectile(const FVector& TargetLocation)
 		UAbilitySystemComponent* SourceASC = UAbilitySystemBlueprintLibrary::GetAbilitySystemComponent(GetAvatarActorFromActorInfo());
 		FGameplayEffectContextHandle ContextHandle = SourceASC->MakeEffectContext();
 		FGameplayEffectSpecHandle SpecHandle = SourceASC->MakeOutgoingSpec(DamageEffectClass, GetAbilityLevel(), ContextHandle);
+		
+		FAuraGameplayTags GameplayTags = FAuraGameplayTags::Get();
+		UAbilitySystemBlueprintLibrary::AssignTagSetByCallerMagnitude(SpecHandle, GameplayTags.Damage, DamageValue);
 		Projectile->DamageEffectSpecHandle = SpecHandle;
 
 		Projectile->FinishSpawning(SpawnTransform);
