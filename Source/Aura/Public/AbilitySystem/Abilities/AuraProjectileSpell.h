@@ -28,6 +28,4 @@ protected:
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly)
 	TSubclassOf<UGameplayEffect> DamageEffectClass;
 
-	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Projectile")
-	float DamageValue;
 };
