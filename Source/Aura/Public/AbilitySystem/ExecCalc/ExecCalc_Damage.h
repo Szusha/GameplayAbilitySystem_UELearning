@@ -7,7 +7,7 @@
 #include "ExecCalc_Damage.generated.h"
 
 /**
- * 
+ *
  */
 UCLASS()
 class AURA_API UExecCalc_Damage : public UGameplayEffectExecutionCalculation
@@ -16,6 +16,5 @@ class AURA_API UExecCalc_Damage : public UGameplayEffectExecutionCalculation
 public:
 	UExecCalc_Damage();
 
-	virtual void Execute_Implementation(FGameplayEffectCustomExecutionParameters& ExecutionParams, FGameplayEffectCustomExecutionOutput& OutExecutionOutput) const;
-	
+	virtual void Execute_Implementation(const FGameplayEffectCustomExecutionParameters& ExecutionParams, FGameplayEffectCustomExecutionOutput& OutExecutionOutput) const override;
 };
