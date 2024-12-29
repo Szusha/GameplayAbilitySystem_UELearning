@@ -33,7 +33,19 @@ void UAuraProjectileSpell::SpawnProjectile(const FVector& TargetLocation)
 		AAuraProjectile* Projectile = GetWorld()->SpawnActorDeferred<AAuraProjectile>(ProjectileClass, SpawnTransform, GetOwningActorFromActorInfo(), Cast<APawn>(GetOwningActorFromActorInfo()), ESpawnActorCollisionHandlingMethod::AlwaysSpawn);
 
 		UAbilitySystemComponent* SourceASC = UAbilitySystemBlueprintLibrary::GetAbilitySystemComponent(GetAvatarActorFromActorInfo());
+		
+		// Adding everything for ContextHandle for learning purposes
 		FGameplayEffectContextHandle ContextHandle = SourceASC->MakeEffectContext();
+		ContextHandle.SetAbility(this);
+		ContextHandle.AddSourceObject(Projectile);
+		TArray<TWeakObjectPtr<AActor>> Actors;
+		Actors.Add(Projectile);
+		ContextHandle.AddActors(Actors);
+
+		FHitResult HitResult; 
+		HitResult.Location = TargetLocation;
+		ContextHandle.AddHitResult(HitResult);
+
 		FGameplayEffectSpecHandle SpecHandle = SourceASC->MakeOutgoingSpec(DamageEffectClass, GetAbilityLevel(), ContextHandle);
 		
 		FAuraGameplayTags GameplayTags = FAuraGameplayTags::Get();
