@@ -8,6 +8,7 @@
 #include "AbilitySystem/Data/CharacterClassInfo.h"
 #include "AbilitySystem/AuraAbilitySystemLibrary.h"
 #include "Interaction/CombatInterface.h"
+#include "AuraAbilityTypes.h"
 
 struct AuraDamageStatics
 {
@@ -76,6 +77,10 @@ void UExecCalc_Damage::Execute_Implementation(const FGameplayEffectCustomExecuti
 	TargetBlockChance = FMath::Max<float>(0.f, TargetBlockChance);
 	
 	const bool bBlocked = FMath::RandRange(1, 100) < TargetBlockChance;
+
+	FGameplayEffectContextHandle EffectContextHandle = EffectSpec.GetContext();
+	UAuraAbilitySystemLibrary::SetIsBlockedHit(EffectContextHandle, bBlocked);
+
 	if (bBlocked)
 	{
 		// If Blocked - halve the damage
@@ -118,24 +123,17 @@ void UExecCalc_Damage::Execute_Implementation(const FGameplayEffectCustomExecuti
 	const float EffectiveArmorCoefficient = EffectiveArmorCurve->Eval(TargetLevel);
 	// Armor ignores a percentage of incoming Damage.
 	Damage *= (100 - EffectiveArmor * EffectiveArmorCoefficient) / 100.f;
-	UE_LOG(LogTemp, Warning, TEXT("Damage N1 = %f"), Damage);
-	UE_LOG(LogTemp, Warning, TEXT("SourceCriticalHitDamage = %f"), SourceCriticalHitDamage);
+	
 	const bool bCritical = FMath::RandRange(1, 100) <= SourceCriticalHitChance;
-	UE_LOG(LogTemp, Warning, TEXT("SourceCriticalHitChance = %f"), SourceCriticalHitChance);
-	UE_LOG(LogTemp, Warning, TEXT("TargetCriticalHitResistance = %f"), TargetCriticalHitResistance);
+
+	UAuraAbilitySystemLibrary::SetIsCriticalHit(EffectContextHandle, bCritical);
+	
 	if (bCritical)
 	{
 		float NewSourceCriticalHitDamage = SourceCriticalHitDamage - (SourceCriticalHitDamage * (TargetCriticalHitResistance / 100.f));
-		
-		UE_LOG(LogTemp, Warning, TEXT("NewSourceCriticalHitDamage = %f"), NewSourceCriticalHitDamage);
-		
 		Damage = Damage + (Damage * (NewSourceCriticalHitDamage / 100.f));
 	}
 
 	FGameplayModifierEvaluatedData EvaluatedData(UAuraAttributeSet::GetIncomingDamageAttribute(), EGameplayModOp::Additive, Damage);
 	OutExecutionOutput.AddOutputModifier(EvaluatedData);
-	UE_LOG(LogTemp, Warning, TEXT("Effective Armor = %f"), EffectiveArmor);
-	UE_LOG(LogTemp, Warning, TEXT("ArmorPenetrationCoefficient = %f"), ArmorPenetrationCoefficient);
-	UE_LOG(LogTemp, Warning, TEXT("Damage final = %f"), Damage);
-	UE_LOG(LogTemp, Warning, TEXT("EffectiveArmorCoefficient = %f"), EffectiveArmorCoefficient);
 }
