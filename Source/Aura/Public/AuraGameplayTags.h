@@ -54,10 +54,12 @@ public:
 	FGameplayTag InputTag_4;
 
 	/*
-	* Meta Attributes
+	* Meta Attributes & Damage Types
 	*/
 
 	FGameplayTag Damage;
+	FGameplayTag Damage_Fire;
+	TArray<FGameplayTag> DamageTypes;
 
 	/*
 	* Effects
