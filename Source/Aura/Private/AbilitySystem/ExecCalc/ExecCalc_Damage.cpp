@@ -69,9 +69,9 @@ void UExecCalc_Damage::Execute_Implementation(const FGameplayEffectCustomExecuti
 	// Get Damage Set by Caller Magnitude
 	
 	float Damage = 0.f;
-	for (FGameplayTag DamageTypeTag : FAuraGameplayTags::Get().DamageTypes)
+	for (auto& Pair : FAuraGameplayTags::Get().DamageTypesToResistances)
 	{
-		const float DamageTypeValue = EffectSpec.GetSetByCallerMagnitude(DamageTypeTag);
+		const float DamageTypeValue = EffectSpec.GetSetByCallerMagnitude(Pair.Key);
 		Damage += DamageTypeValue;
 	}
 
