@@ -97,22 +97,26 @@ void UExecCalc_Damage::Execute_Implementation(const FGameplayEffectCustomExecuti
 
 	// Get Damage Set by Caller Magnitude
 	float Damage = 0.f;
-	for (auto& Pair : FAuraGameplayTags::Get().DamageTypesToResistances)
+	for (const TTuple<FGameplayTag, FGameplayTag>& Pair : FAuraGameplayTags::Get().DamageTypesToResistances)
 	{
-		const FGameplayTag GameplayTag = Pair.Key;
+		const FGameplayTag DamageTypeTag = Pair.Key;
 		const FGameplayTag ResistanceTag = Pair.Value;
-		checkf(AuraDamageStatics().TagsToCaptureDefs.Contains(ResistanceTag), TEXT("TagsToCaptureDefs does not contain Tag [%s] in ExecCalc_Damage"), *ResistanceTag.ToString());
 
+		checkf(AuraDamageStatics().TagsToCaptureDefs.Contains(ResistanceTag), TEXT("TagsToCaptureDefs doesn't contain Tag: [%s] in ExecCalc_Damage"), *ResistanceTag.ToString());
 		const FGameplayEffectAttributeCaptureDefinition CaptureDef = AuraDamageStatics().TagsToCaptureDefs[ResistanceTag];
 
 		float DamageTypeValue = EffectSpec.GetSetByCallerMagnitude(Pair.Key);
+		UE_LOG(LogTemp, Warning, TEXT("DamageTypeValue = %f"), DamageTypeValue);
 
 		float Resistance = 0.f;
 		ExecutionParams.AttemptCalculateCapturedAttributeMagnitude(CaptureDef, EvaluationParams, Resistance);
 		Resistance = FMath::Clamp(Resistance, 0.f, 100.f);
 
 		DamageTypeValue *= (100.f - Resistance) / 100.f;
-		Damage += DamageTypeValue;
+		UE_LOG(LogTemp, Warning, TEXT("Resistance = %f"), Resistance);
+
+		Damage = Damage + DamageTypeValue;
+		UE_LOG(LogTemp, Warning, TEXT("Damage = %f"), Damage);
 	}
 
 	// Capture Block Chance on Target, and determine if there was a successful block
