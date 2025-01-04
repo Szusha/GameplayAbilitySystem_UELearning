@@ -115,7 +115,7 @@ void UExecCalc_Damage::Execute_Implementation(const FGameplayEffectCustomExecuti
 		DamageTypeValue *= (100.f - Resistance) / 100.f;
 		UE_LOG(LogTemp, Warning, TEXT("Resistance = %f"), Resistance);
 
-		Damage = Damage + DamageTypeValue;
+		Damage += DamageTypeValue;
 		UE_LOG(LogTemp, Warning, TEXT("Damage = %f"), Damage);
 	}
 

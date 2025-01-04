@@ -151,19 +151,19 @@ public:
 	* Resistance
 	*/
 
-	UPROPERTY(BlueprintReadOnly, Category = "Secondary Attributes")
+	UPROPERTY(BlueprintReadOnly, ReplicatedUsing = OnRep_FireResistance, Category = "Resistance Attributes")
 	FGameplayAttributeData FireResistance;
 	ATTRIBUTE_ACCESSORS(UAuraAttributeSet, FireResistance);
 
-	UPROPERTY(BlueprintReadOnly, Category = "Secondary Attributes")
+	UPROPERTY(BlueprintReadOnly, ReplicatedUsing = OnRep_LightningResistance, Category = "Resistance Attributes")
 	FGameplayAttributeData LightningResistance;
 	ATTRIBUTE_ACCESSORS(UAuraAttributeSet, LightningResistance);
 
-	UPROPERTY(BlueprintReadOnly, Category = "Secondary Attributes")
+	UPROPERTY(BlueprintReadOnly, ReplicatedUsing = OnRep_ArcaneResistance, Category = "Resistance Attributes")
 	FGameplayAttributeData ArcaneResistance;
 	ATTRIBUTE_ACCESSORS(UAuraAttributeSet, ArcaneResistance);
 
-	UPROPERTY(BlueprintReadOnly, Category = "Secondary Attributes")
+	UPROPERTY(BlueprintReadOnly, ReplicatedUsing = OnRep_PhysicalResistance, Category = "Resistance Attributes")
 	FGameplayAttributeData PhysicalResistance;
 	ATTRIBUTE_ACCESSORS(UAuraAttributeSet, PhysicalResistance);
 
