@@ -73,6 +73,15 @@ public:
 	FGameplayTag Damage_Physical;
 
 	FGameplayTag Abilities_Attack;
+	
+	/*
+	* AttackMontages
+	*/
+
+	FGameplayTag Montage_Attack_Weapon;
+	FGameplayTag Montage_Attack_RightHand;
+	FGameplayTag Montage_Attack_LeftHand;
+
 
 	TMap<FGameplayTag, FGameplayTag> DamageTypesToResistances;
 
@@ -81,6 +90,8 @@ public:
 	*/
 
 	FGameplayTag Effects_HitReact;
+
+
 
 private:
 	static FAuraGameplayTags GameplayTags;
