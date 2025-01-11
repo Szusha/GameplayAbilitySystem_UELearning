@@ -1,4 +1,3 @@
-// Coryright Szusha
 
 #pragma once
 
