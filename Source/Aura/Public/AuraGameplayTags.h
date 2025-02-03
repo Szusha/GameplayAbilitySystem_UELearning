@@ -76,6 +76,8 @@ public:
 	FGameplayTag Abilities_Summon;
 
 	FGameplayTag Abilities_Fire_FireBolt;
+
+	FGameplayTag Attributes_Meta_IncomingXP;
 	
 	/*
 	* Cooldowns
