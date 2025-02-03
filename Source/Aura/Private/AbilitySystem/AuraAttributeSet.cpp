@@ -1,6 +1,7 @@
 // Coryright Szusha
 
 
+#include "Aura/AuraLogChannels.h"
 #include "AbilitySystem/AuraAttributeSet.h"
 #include "GameFramework/Character.h"
 #include "GameplayEffectExtension.h"
@@ -106,7 +107,6 @@ void UAuraAttributeSet::PostGameplayEffectExecute(const FGameplayEffectModCallba
 	if (Data.EvaluatedData.Attribute == GetHealthAttribute())
 	{
 		SetHealth(FMath::Clamp(GetHealth(), 0.f, GetMaxHealth()));
-		UE_LOG(LogTemp, Warning, TEXT("Health: %f"), GetHealth());
 	}
 	if (Data.EvaluatedData.Attribute == GetManaAttribute())
 	{
@@ -142,6 +142,12 @@ void UAuraAttributeSet::PostGameplayEffectExecute(const FGameplayEffectModCallba
 			ShowFloatingText(Props, LocalIncomingDamage, bBlock, bCritical);
 			
 		}
+	}
+	if (Data.EvaluatedData.Attribute == GetIncomingXPAttribute())
+	{
+		const float LocalIncomingXP = GetIncomingXP();
+		SetIncomingXP(0.f);
+		UE_LOG(LogAura, Log, TEXT("Incoming XP: %f"), GetIncomingXP());
 	}
 }
 
