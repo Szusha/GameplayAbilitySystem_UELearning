@@ -249,4 +249,5 @@ public:
 
 private:
 	void SetEffectProperties(const FGameplayEffectModCallbackData& Data, FEffectProperties& Props);
+	void SendXPEvent(const FEffectProperties& Props);
 };

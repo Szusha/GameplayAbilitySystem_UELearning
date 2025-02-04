@@ -174,7 +174,7 @@ int32 UAuraAbilitySystemLibrary::GetXPRewardForClassAndLevel(const UObject* Worl
 	if (CharacterClassInfo == nullptr) return 0;
 
 	const FCharacterClassDefaultInfo& Info = CharacterClassInfo->GetClassDefaultInfo(CharacterClass);
-	const float XPReward = Info.XPReward.GetValueAtLevel(CharacterLevel);
+	const float XP = Info.XPReward.GetValueAtLevel(CharacterLevel);
 
-	return static_cast<int32>(XPReward);
+	return static_cast<int32>(XP);
 }
