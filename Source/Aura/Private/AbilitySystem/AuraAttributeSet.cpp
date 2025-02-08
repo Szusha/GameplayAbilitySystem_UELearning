@@ -1,8 +1,7 @@
 // Coryright Szusha
 
-
-#include "Aura/AuraLogChannels.h"
 #include "AbilitySystem/AuraAttributeSet.h"
+#include "Aura/AuraLogChannels.h"
 #include "GameFramework/Character.h"
 #include "GameplayEffectExtension.h"
 #include "Net/UnrealNetwork.h"
