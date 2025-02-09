@@ -33,6 +33,8 @@ public:
 	virtual int32 FindLevelForXP_Implementation(int32 InXP) override;
 	virtual int32 GetAttributePointsReward_Implementation(int32 InPlayerLevel) override;
 	virtual int32 GetSpellPointsReward_Implementation(int32 InPlayerLevel) override;
+	virtual int32 GetAttributePoints_Implementation() override;
+	virtual int32 GetSpellPoints_Implementation() override;
 	/* end Player Interface */
 
 	/* Combat Interface */

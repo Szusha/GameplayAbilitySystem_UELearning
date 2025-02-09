@@ -39,6 +39,12 @@ public:
 	int32 GetXP();
 
 	UFUNCTION(BlueprintNativeEvent)
+	int32 GetAttributePoints();
+
+	UFUNCTION(BlueprintNativeEvent)
+	int32 GetSpellPoints();
+
+	UFUNCTION(BlueprintNativeEvent)
 	int32 GetAttributePointsReward(int32 InPlayerLevel);
 
 	UFUNCTION(BlueprintNativeEvent)
