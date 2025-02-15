@@ -61,6 +61,8 @@ public:
 	FGameplayTag InputTag_2;
 	FGameplayTag InputTag_3;
 	FGameplayTag InputTag_4;
+	FGameplayTag InputTag_PassiveTop;
+	FGameplayTag InputTag_PassiveBottom;
 
 	/*
 	* Meta Attributes & Damage Types
