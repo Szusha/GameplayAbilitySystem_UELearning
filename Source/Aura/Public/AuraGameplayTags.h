@@ -80,6 +80,7 @@ public:
 	FGameplayTag Abilities_HitReact;
 
 	FGameplayTag Abilities_Fire_FireBolt;
+	FGameplayTag Abilities_Lightning_Electrocute;
 
 	FGameplayTag Attributes_Meta_IncomingXP;
 	
