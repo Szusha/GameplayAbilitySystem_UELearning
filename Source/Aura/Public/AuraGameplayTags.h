@@ -85,6 +85,15 @@ public:
 	FGameplayTag Abilities_Lightning_Electrocute;
 
 	FGameplayTag Attributes_Meta_IncomingXP;
+
+	/*
+	* Debuffs
+	*/
+
+	FGameplayTag Debuff_Burn;
+	FGameplayTag Debuff_Stun;
+	FGameplayTag Debuff_Arcane;
+	FGameplayTag Debuff_Physical;
 	
 	/*
 	* Abilities Status & Types
@@ -121,6 +130,7 @@ public:
 
 
 	TMap<FGameplayTag, FGameplayTag> DamageTypesToResistances;
+	TMap<FGameplayTag, FGameplayTag> DamageTypesToDebuffs;
 
 	/*
 	* Effects
