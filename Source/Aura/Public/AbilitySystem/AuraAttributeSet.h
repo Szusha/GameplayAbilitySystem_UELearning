@@ -249,6 +249,10 @@ public:
 	void OnRep_PhysicalResistance(const FGameplayAttributeData& OldPhysicalResistance) const;
 
 private:
+	void HandleIncomingXP(FEffectProperties& Props);
+	void HandleIncomingDamage(FEffectProperties& Props);
+	void Debuff(FEffectProperties& Props);
+
 	void SetEffectProperties(const FGameplayEffectModCallbackData& Data, FEffectProperties& Props);
 	void SendXPEvent(const FEffectProperties& Props);
 
