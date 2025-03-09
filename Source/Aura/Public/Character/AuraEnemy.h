@@ -55,7 +55,7 @@ public:
 	UPROPERTY(BlueprintReadWrite, Category = "Combat")
 	TObjectPtr<AActor> CombatTarget;
 
-	virtual void Die() override;
+	virtual void Die(const FVector& Impulse) override;
 
 protected:
 	virtual void BeginPlay() override;

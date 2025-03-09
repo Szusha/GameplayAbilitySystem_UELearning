@@ -142,14 +142,16 @@ void UAuraAttributeSet::HandleIncomingDamage(FEffectProperties& Props)
 		SetHealth(FMath::Clamp(NewHealth, 0.f, GetMaxHealth()));
 
 		const bool bFatal = NewHealth <= 0.f;
+		
 		if (bFatal)
 		{
-			//TODO: Apply Death Impulse!
-
 			ICombatInterface* CombatInterface = Cast<ICombatInterface>(Props.TargetAvatarActor);
 			if (CombatInterface)
 			{
-				CombatInterface->Die();
+				FVector DeathImpulse = UAuraAbilitySystemLibrary::GetDeathImpulse(Props.EffectContextHandle);
+				FString ImpulseString = FString::Printf(TEXT("Impulse: %s"), *DeathImpulse.ToString());
+				CombatInterface->Die(DeathImpulse);
+				UE_LOG(LogAura, Display, TEXT("%s"), *ImpulseString);
 			}
 			SendXPEvent(Props);
 		}
