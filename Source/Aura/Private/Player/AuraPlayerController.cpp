@@ -11,6 +11,7 @@
 #include "NavigationPath.h"
 #include "GameFramework/Character.h"
 #include "UI/Widgets/DamageTextComponent.h"
+#include "NiagaraFunctionLibrary.h"
 
 #include "EnhancedInputSubsystems.h" // input
 #include "Input/AuraInputComponent.h"
@@ -203,6 +204,7 @@ void AAuraPlayerController::AbilityInputTagReleased(FGameplayTag InputTag)
 					}
 				}
 			}
+			UNiagaraFunctionLibrary::SpawnSystemAtLocation(this, ClickNiagaraSystem, CachedDestination);
 		}
 		FollowTime = 0.f;
 		bTargeting = false;
