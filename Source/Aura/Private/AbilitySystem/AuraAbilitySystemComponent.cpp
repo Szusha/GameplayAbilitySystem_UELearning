@@ -65,9 +65,28 @@ void UAuraAbilitySystemComponent::AbilityInputTagReleased(const FGameplayTag& In
 
 	for (auto& Spec : GetActivatableAbilities())
 	{
-		if (Spec.DynamicAbilityTags.HasTagExact(InputTag))
+		if (Spec.DynamicAbilityTags.HasTagExact(InputTag) && Spec.IsActive())
 		{
 			AbilitySpecInputReleased(Spec);
+			InvokeReplicatedEvent(EAbilityGenericReplicatedEvent::InputReleased, Spec.Handle, Spec.ActivationInfo.GetActivationPredictionKey());
+		}
+	}
+}
+
+void UAuraAbilitySystemComponent::AbilityInputTagPressed(const FGameplayTag& InputTag)
+{
+	if (!InputTag.IsValid()) return;
+
+	for (auto& Spec : GetActivatableAbilities())
+	{
+		if (Spec.DynamicAbilityTags.HasTagExact(InputTag))
+		{
+			AbilitySpecInputPressed(Spec);
+			if (!Spec.IsActive())
+			{
+				InvokeReplicatedEvent(EAbilityGenericReplicatedEvent::InputPressed, Spec.Handle, Spec.ActivationInfo.GetActivationPredictionKey());
+				UE_LOG(LogAura, Warning, TEXT("Ability Pressed fr"));
+			}
 		}
 	}
 }
