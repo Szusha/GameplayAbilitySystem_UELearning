@@ -118,6 +118,7 @@ public:
 	*/
 
 	FGameplayTag Cooldown_Fire_FireBolt;
+	FGameplayTag Cooldown_Lightning_Electrocute;
 
 	/*
 	* AttackMontages & Sockets
