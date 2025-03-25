@@ -74,6 +74,12 @@ public:
 	FGameplayTag Damage_Arcane;
 	FGameplayTag Damage_Physical;
 
+	FGameplayTag Attributes_Meta_IncomingXP;
+
+	/*
+	* Abilities
+	*/
+
 	FGameplayTag Abilities_None;
 
 	FGameplayTag Abilities_Attack;
@@ -84,7 +90,11 @@ public:
 	FGameplayTag Abilities_Fire_FireBolt;
 	FGameplayTag Abilities_Lightning_Electrocute;
 
-	FGameplayTag Attributes_Meta_IncomingXP;
+	// Passive Spells
+
+	FGameplayTag Abilities_Passive_HaloOfProtection;
+	FGameplayTag Abilities_Passive_LifeSiphon;
+	FGameplayTag Abilities_Passive_ManaSiphon;
 
 	/*
 	* Debuffs
