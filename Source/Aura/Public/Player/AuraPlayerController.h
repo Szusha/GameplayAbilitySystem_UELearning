@@ -34,6 +34,8 @@ public:
 	UFUNCTION(BlueprintCallable)
 	void HideMagicCircle();
 
+	void SetDecalMaterial(UMaterialInterface* DecalMaterial);
+
 protected:
 	virtual void BeginPlay() override;
 	virtual void SetupInputComponent() override;

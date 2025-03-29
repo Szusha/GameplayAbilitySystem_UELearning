@@ -13,6 +13,7 @@
 #include "UI/Widgets/DamageTextComponent.h"
 #include "NiagaraFunctionLibrary.h"
 #include "Actors/MagicCircle.h"
+#include "Components/DecalComponent.h"
 
 #include "EnhancedInputSubsystems.h" // input
 #include "Input/AuraInputComponent.h"
@@ -85,6 +86,11 @@ void AAuraPlayerController::HideMagicCircle()
 	{
 		MagicCircle->Destroy();
 	}
+}
+
+void AAuraPlayerController::SetDecalMaterial(UMaterialInterface* DecalMaterial)
+{
+	MagicCircle->MagicCircleDecal->SetMaterial(0, DecalMaterial);
 }
 
 void AAuraPlayerController::BeginPlay()
