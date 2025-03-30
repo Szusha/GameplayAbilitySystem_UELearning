@@ -85,10 +85,9 @@ void UAuraAbilitySystemComponent::AbilityInputTagPressed(const FGameplayTag& Inp
 		if (Spec.DynamicAbilityTags.HasTagExact(InputTag))
 		{
 			AbilitySpecInputPressed(Spec);
-			if (!Spec.IsActive())
+			if (Spec.IsActive())
 			{
 				InvokeReplicatedEvent(EAbilityGenericReplicatedEvent::InputPressed, Spec.Handle, Spec.ActivationInfo.GetActivationPredictionKey());
-				UE_LOG(LogAura, Warning, TEXT("Ability Pressed fr"));
 			}
 		}
 	}
