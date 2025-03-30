@@ -35,7 +35,7 @@ public:
 	virtual int32 GetSpellPointsReward_Implementation(int32 InPlayerLevel) override;
 	virtual int32 GetAttributePoints_Implementation() override;
 	virtual int32 GetSpellPoints_Implementation() override;
-	virtual void ShowMagicCircle_Implementation(UMaterialInterface* DecalMaterial = nullptr) override;
+	virtual void ShowMagicCircle_Implementation(UMaterialInterface* DecalMaterial) override;
 	virtual void HideMagicCircle_Implementation() override;
 	/* end Player Interface */
 
