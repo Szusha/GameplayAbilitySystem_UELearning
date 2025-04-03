@@ -10,6 +10,7 @@
 #include "Interaction/CombatInterface.h"
 #include "AuraAbilityTypes.h"
 #include "Aura/AuraLogChannels.h"
+#include "Kismet/GameplayStatics.h"
 
 struct AuraDamageStatics
 {
@@ -98,6 +99,7 @@ void UExecCalc_Damage::Execute_Implementation(const FGameplayEffectCustomExecuti
 	}
 
 	const FGameplayEffectSpec& EffectSpec = ExecutionParams.GetOwningSpec();
+	FGameplayEffectContextHandle EffectContextHandle = EffectSpec.GetContext();
 
 	const FGameplayTagContainer* SourceTags = EffectSpec.CapturedSourceTags.GetAggregatedTags();
 	const FGameplayTagContainer* TargetTags = EffectSpec.CapturedTargetTags.GetAggregatedTags();
@@ -121,17 +123,37 @@ void UExecCalc_Damage::Execute_Implementation(const FGameplayEffectCustomExecuti
 		const FGameplayEffectAttributeCaptureDefinition CaptureDef = TagsToCaptureDefs[ResistanceTag];
 
 		float DamageTypeValue = EffectSpec.GetSetByCallerMagnitude(Pair.Key, false);
-		UE_LOG(LogTemp, Warning, TEXT("DamageTypeValue = %f"), DamageTypeValue);
 
 		float Resistance = 0.f;
 		ExecutionParams.AttemptCalculateCapturedAttributeMagnitude(CaptureDef, EvaluationParams, Resistance);
 		Resistance = FMath::Clamp(Resistance, 0.f, 100.f);
 
 		DamageTypeValue *= (100.f - Resistance) / 100.f;
-		UE_LOG(LogTemp, Warning, TEXT("Resistance = %f"), Resistance);
+
+		if (UAuraAbilitySystemLibrary::IsRadialDamage(EffectContextHandle))
+		{
+			if (ICombatInterface* CombatInterface = Cast<ICombatInterface>(TargetAvatar))
+			{
+				CombatInterface->GetOnDamageSignature().AddLambda([&](float DamageAmount)
+					{
+						DamageTypeValue = DamageAmount;
+					});
+			}
+			UGameplayStatics::ApplyRadialDamageWithFalloff(TargetAvatar,
+				DamageTypeValue,
+				0.f,
+				UAuraAbilitySystemLibrary::GetRadialDamageOrigin(EffectContextHandle),
+				UAuraAbilitySystemLibrary::GetRadialDamageInnerRadius(EffectContextHandle),
+				UAuraAbilitySystemLibrary::GetRadialDamageOuterRadius(EffectContextHandle),
+				1.f,
+				UDamageType::StaticClass(),
+				TArray<AActor*>(),
+				SourceAvatar,
+				nullptr);
+			
+		}
 
 		Damage += DamageTypeValue;
-		UE_LOG(LogTemp, Warning, TEXT("Damage = %f"), Damage);
 	}
 
 	// Capture Block Chance on Target, and determine if there was a successful block
@@ -141,8 +163,6 @@ void UExecCalc_Damage::Execute_Implementation(const FGameplayEffectCustomExecuti
 	TargetBlockChance = FMath::Max<float>(0.f, TargetBlockChance);
 	
 	const bool bBlocked = FMath::RandRange(1, 100) < TargetBlockChance;
-
-	FGameplayEffectContextHandle EffectContextHandle = EffectSpec.GetContext();
 	UAuraAbilitySystemLibrary::SetIsBlockedHit(EffectContextHandle, bBlocked);
 
 	if (bBlocked)
