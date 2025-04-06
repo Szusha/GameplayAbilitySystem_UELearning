@@ -77,10 +77,10 @@ void AAuraPlayerController::ShowMagicCircle(UMaterialInterface* DecalMaterial)
 	if (!IsValid(MagicCircle))
 	{
 		MagicCircle = GetWorld()->SpawnActor<AMagicCircle>(MagicCircleClass);
+		bShowMouseCursor = false;
 		if (DecalMaterial)
 		{
 			MagicCircle->MagicCircleDecal->SetMaterial(0, DecalMaterial);
-			bShowMouseCursor = false;
 		}
 	}
 }
