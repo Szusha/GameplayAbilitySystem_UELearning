@@ -15,6 +15,7 @@
 #include "Camera/CameraComponent.h"
 #include "AuraGameplayTags.h"
 #include "AbilitySystem/Debuff/DebuffNiagaraComponent.h"
+#include "Components/CapsuleComponent.h"
 
 AAuraCharacter::AAuraCharacter()
 {
@@ -40,6 +41,9 @@ AAuraCharacter::AAuraCharacter()
 	bUseControllerRotationYaw = false;
 
 	CharacterClass = ECharacterClass::Elementalist;
+
+	GetCapsuleComponent()->SetReceivesDecals(false);
+	GetMesh()->SetReceivesDecals(false);
 }
 
 void AAuraCharacter::PossessedBy(AController* NewController)
