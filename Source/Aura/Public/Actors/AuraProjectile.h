@@ -33,6 +33,10 @@ protected:
 	virtual void Destroyed() override;
 	UFUNCTION(BlueprintCallable)
 	void OnHit();
+
+	bool IsValidOverlap(AActor* OtherActor);
+
+	bool bHit = false;
 private:
 	UPROPERTY(EditDefaultsOnly)
 	float LifeSpan = 15.f;
@@ -51,7 +55,5 @@ private:
 
 	UPROPERTY(EditAnywhere)
 	TObjectPtr<class UAudioComponent> LoopingSoundComponent;
-
-	bool bHit = false;
 
 };
