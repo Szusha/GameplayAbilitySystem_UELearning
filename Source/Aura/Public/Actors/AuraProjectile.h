@@ -32,11 +32,14 @@ protected:
 	virtual void OnSphereOverlap(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult);
 	virtual void Destroyed() override;
 	UFUNCTION(BlueprintCallable)
-	void OnHit();
+	virtual void OnHit();
 
 	bool IsValidOverlap(AActor* OtherActor);
 
 	bool bHit = false;
+
+	UPROPERTY(EditAnywhere)
+	TObjectPtr<class UAudioComponent> LoopingSoundComponent;
 private:
 	UPROPERTY(EditDefaultsOnly)
 	float LifeSpan = 15.f;
@@ -53,7 +56,6 @@ private:
 	UPROPERTY(EditAnywhere)
 	TObjectPtr<class USoundBase> LoopSound;
 
-	UPROPERTY(EditAnywhere)
-	TObjectPtr<class UAudioComponent> LoopingSoundComponent;
+	
 
 };
