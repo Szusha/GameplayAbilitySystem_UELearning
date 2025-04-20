@@ -26,8 +26,6 @@ public:
 
 	void InitializeSlot();
 
-	
-
 	UPROPERTY()
 	int32 SlotIndex;
 
