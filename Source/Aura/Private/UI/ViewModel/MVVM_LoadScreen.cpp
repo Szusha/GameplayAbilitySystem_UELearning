@@ -41,6 +41,7 @@ void UMVVM_LoadScreen::SelectSlotButtonClicked(int32 Slot)
 {
 	for (const TTuple<int32, UMVVM_LoadSlot*> LoadSlot : LoadSlots)
 	{
+		SlotSelected.Broadcast();
 		if (LoadSlot.Key == Slot)
 		{
 			LoadSlot.Value->EnableSelectSlotButton.Broadcast(false);
