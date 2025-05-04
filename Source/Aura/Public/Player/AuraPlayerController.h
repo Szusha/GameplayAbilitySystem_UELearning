@@ -61,8 +61,8 @@ private:
 	/* Trace */
 	void CursorTrace();
 
-	TScriptInterface<class IEnemyInterface> LastActor;  // TScriptInterface is a new wrapper for raw Interface pointers
-	TScriptInterface<class IEnemyInterface> ThisActor;
+	TScriptInterface<class IHighlightInterface> LastActor;  // TScriptInterface is a new wrapper for raw Interface pointers
+	TScriptInterface<class IHighlightInterface> ThisActor;
 
 	FHitResult CursorHit;
 
