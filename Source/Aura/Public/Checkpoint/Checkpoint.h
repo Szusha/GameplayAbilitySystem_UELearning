@@ -38,10 +38,9 @@ protected:
 
 	void HandleGlowEffects();
 
-private:
-	UPROPERTY(VisibleAnywhere)
+	UPROPERTY(BlueprintReadOnly, VisibleAnywhere)
 	TObjectPtr<UStaticMeshComponent> CheckpointMesh;
-
+private:
 	UPROPERTY(VisibleAnywhere)
 	TObjectPtr<USphereComponent> Sphere;
 };
