@@ -14,6 +14,13 @@ class UDamageTextComponent;
 class UNiagaraSystem;
 class AMagicCircle;
 
+enum class ETargetingStatus : uint8
+{
+	TargetingEnemy,
+	TargetingNonEnemy,
+	NotTargeting
+};
+
 /**
  * 
  */
@@ -61,8 +68,10 @@ private:
 	/* Trace */
 	void CursorTrace();
 
-	TScriptInterface<class IHighlightInterface> LastActor;  // TScriptInterface is a new wrapper for raw Interface pointers
-	TScriptInterface<class IHighlightInterface> ThisActor;
+	TObjectPtr<AActor> LastActor;  // TScriptInterface is a new wrapper for raw Interface pointers (was changed to AActor later in the course anyway to use interface differently)
+	TObjectPtr<AActor> ThisActor;
+	static void HighlightActor(AActor* InActor);
+	static void UnHighlightActor(AActor* InActor);
 
 	FHitResult CursorHit;
 
@@ -82,7 +91,7 @@ private:
 	float FollowTime = 0.f;
 	float ShortPressThreshold = 0.5f;
 	bool bAutoRunning = false;
-	bool bTargeting = false;
+	ETargetingStatus TargetingStatus = ETargetingStatus::NotTargeting;
 
 	UPROPERTY(EditDefaultsOnly)
 	float AutoRunAcceptanceRadius = 50.f;
