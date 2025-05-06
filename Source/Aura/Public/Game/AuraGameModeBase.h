@@ -34,7 +34,7 @@ public:
 	ULoadScreenSaveGame* RetrieveInGameSaveData();
 	void SaveInGameProgressData(ULoadScreenSaveGame* SaveObject);
 
-	void SaveWorldState(UWorld* World) const;
+	void SaveWorldState(UWorld* World, const FString& DestinationMapAssetName = FString("")) const;
 	void LoadWorldState(UWorld* World) const;
 
 	UPROPERTY(EditDefaultsOnly)
@@ -51,6 +51,8 @@ public:
 
 	UPROPERTY(EditDefaultsOnly)
 	FName DefaultPlayerStartTag;
+
+	FString GetMapNameFromAssetMapName(const FString& DestinationMapAssetName) const;
 
 	virtual AActor* ChoosePlayerStart_Implementation(AController* Player) override;
 protected:
