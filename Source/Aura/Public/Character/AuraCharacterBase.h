@@ -79,6 +79,7 @@ public:
 	virtual void OnRep_Burned();
 
 	virtual void StunTagChanged(const FGameplayTag CallbackTag, int32 NewCount);
+	void SetCharacterClass(ECharacterClass InClass) { CharacterClass = InClass; }
 protected:
 	virtual void BeginPlay() override;
 

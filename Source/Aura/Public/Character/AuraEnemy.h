@@ -56,6 +56,7 @@ public:
 
 	virtual void Die(const FVector& Impulse) override;
 
+	void SetLevel(int32 InLevel) { Level = InLevel; }
 protected:
 	virtual void BeginPlay() override;
 	virtual void InitAbilityActorInfo() override;
